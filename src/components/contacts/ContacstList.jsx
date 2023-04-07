@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, getFilteredContacts } from '../redux/contactsSlice';
+import { deleteContact } from '../redux/operations';
+import { getFilteredContacts } from 'components/redux/selectors';
 
 const StyledList = styled.ul`
   display: flex;
@@ -31,7 +32,7 @@ export const ContactsList = () => {
   const contacts = useSelector(getFilteredContacts);
 
   const handleDelete = id => {
-    dispatch(deleteContact({ id }));
+    dispatch(deleteContact(id));
   };
   return (
     <StyledList>

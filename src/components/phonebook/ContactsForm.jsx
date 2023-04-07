@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, contactsSelector } from 'components/redux/contactsSlice';
+import { selectContacts } from 'components/redux/selectors';
+import { addContact } from '../redux/operations';
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
@@ -31,7 +32,8 @@ const StyledForm = styled.form`
 
 const ContactsForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(contactsSelector);
+  const contacts = useSelector(selectContacts);
+
   const onSubmit = event => {
     event.preventDefault();
     const name = event.target.elements.name.value;
@@ -39,7 +41,7 @@ const ContactsForm = () => {
     if (contacts.find(contact => contact.name === name)) {
       alert('вже Є!');
     } else {
-      dispatch(addContact(name, number));
+      dispatch(addContact({ name, number }));
     }
     event.target.reset();
   };

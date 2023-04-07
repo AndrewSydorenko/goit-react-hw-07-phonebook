@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter, filterSelector } from '../redux/contactsSlice';
+import { setFilter } from '../redux/contactsSlice';
+import { selectFilter } from 'components/redux/selectors';
 
 const StyledInput = styled.input`
   background-color: antiquewhite;
@@ -14,7 +15,7 @@ const StyledInput = styled.input`
 
 export const ContactsFilter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(filterSelector);
+  const filter = useSelector(selectFilter);
   const handleFilterUpdate = e => {
     const filterValue = e.target.value;
     dispatch(setFilter(filterValue));
